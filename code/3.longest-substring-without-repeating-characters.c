@@ -47,22 +47,18 @@
 
 // start_marker
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
+
 int lengthOfLongestSubstring(char* s) {
-	int max = 0;
-	char *head=s, *tail=s;
+	int last[256], max = 0;
+	memset(last, 0xFF, sizeof last);
 
-	while(*tail != '\0') {
-		for(char* c=head; c<tail; c++) {
-			if(*c != *tail) continue;
+	for(int start=0, i=0; s[i]; i++) {
+		unsigned char ch = s[i];
 
-			max = MAX(tail-head, max);
-			head = c+1;
-			break;
-		}
-
-		tail++;
+		if(last[ch] >= start) start = last[ch] + 1;
+		last[ch] = i;
+		max = MAX(i-start+1, max);
 	}
-	max = MAX(tail-head, max);
 
 	return max;
 }
