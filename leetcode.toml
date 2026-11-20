@@ -1,0 +1,31 @@
+[code]
+editor = 'nvim'
+lang = 'c'
+test = true
+pick = '${fid}.${slug}'
+
+comment_problem_desc = true
+comment_leading = '//'
+edit_code_marker = true
+start_marker = 'start_marker'
+end_marker = 'end_marker'
+
+inject_before = [
+    '#include <stdio.h>',
+    '#include <stdlib.h>',
+    '#include <stdbool.h>',
+    '#include <string.h>',
+    '#include <limits.h>',
+    '#include <math.h>',
+    '',
+]
+
+[cookies]
+csrf = ''
+session = ''
+site = 'leetcode.com'
+
+[storage]
+root = '~/dev/leetcode'
+code = 'code'
+scripts = 'scripts'
