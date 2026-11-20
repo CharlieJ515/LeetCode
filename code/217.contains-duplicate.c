@@ -56,17 +56,25 @@
 #include <math.h>
 
 // start_marker
-int cmp(const void *a, const void *b) {
-	return *(int*)a - *(int*)b;
+static int cmp(const void *a, const void *b) {
+	int x = *(int*)a, y = *(int*)b;
+	return (x>y) - (x<y);
 }
 
 bool containsDuplicate(int* nums, int numsSize) {
-	qsort(nums, numsSize, sizeof nums[0], cmp);
+	int *arr = malloc(numsSize * sizeof *nums);
+	memcpy(arr, nums, numsSize * sizeof *arr);
 
-	for(int i=0; i<numsSize-1; i++) {
-		if(nums[i] == nums[i+1]) return true;
+	bool duplicate = false;
+	qsort(arr, numsSize, sizeof nums[0], cmp);
+	for(int i=1; i<numsSize; i++) {
+		if(arr[i-1] == arr[i]) {
+			duplicate = true;
+			break;
+		}
 	}
 
-	return false;
+	free(arr);
+	return duplicate;
 }
 // end_marker
