@@ -48,11 +48,10 @@ bool isAnagram(char* s, char* t) {
 	int cnt[26] = {0};
 
 	for(char *ch=s; *ch; ch++) {
-		cnt[*ch-'a'] += 1;
+		cnt[*ch-'a']++;
 	}
 	for(char *ch=t; *ch; ch++) {
-		cnt[*ch-'a'] -= 1;
-		if(cnt[*ch-'a'] < 0) return false;
+		if(--cnt[*ch-'a'] < 0) return false;
 	}
 	
 	return true;
